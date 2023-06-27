@@ -1,0 +1,318 @@
+{% extends 'user/user_navbar.html' %}
+{% block content %}
+{% load static %}
+
+<div class="page-body">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-4">
+                <div class="card mb-3">
+                    <div class="col-12">
+                        <div class="card bg-indigo text-primary-fg">
+                            <div class="card-stamp">
+                                <div class="card-stamp-icon bg-white text-primary">
+                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                        class="icon icon-tabler icon-tabler-plane-tilt" width="24" height="24"
+                                        viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                        stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                        <path
+                                            d="M14.5 6.5l3 -2.9a2.05 2.05 0 0 1 2.9 2.9l-2.9 3l2.5 7.5l-2.5 2.55l-3.5 -6.55l-3 3v3l-2 2l-1.5 -4.5l-4.5 -1.5l2 -2h3l3 -3l-6.5 -3.5l2.5 -2.5l7.5 2.5z">
+                                        </path>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <h4 class="card-title">
+                                            {{flight.aircraft_reg.name}} |
+                                            {{flight.flight_number }}</h4>
+                                    </div>
+                                    <div class="col-6 text-end">
+                                        <h5 class="card-title">
+                                            {{flight.departure_date }}</h5>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <h6 class="card-text mb-0">
+                                            {{flight.departure_airport_from.airport_name}}
+                                        </h6>
+                                    </div>
+                                    <div class="col-6 text-end">
+                                        <h6 class="card-text mb-0 overflow-hidden">
+                                            {{flight.arrival_airport_to.airport_name}}
+                                        </h6>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-4">
+                                        <p class="card-text" style="font-size: 20px; font-weight: bold;">
+                                            {{flight.departure_airport_from.iata_code}}
+                                        </p>
+                                    </div>
+                                    <div class="col-4 text-center mt-1">--------
+                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                            class="icon icon-tabler icon-tabler-plane" width="24" height="24"
+                                            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                            stroke-linecap="round" stroke-linejoin="round">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none">
+                                            </path>
+                                            <path
+                                                d="M16 10h4a2 2 0 0 1 0 4h-4l-4 7h-3l2 -7h-4l-2 2h-3l2 -4l-2 -4h3l2 2h4l-2 -7h3z">
+                                            </path>
+                                        </svg> --------
+                                    </div>
+                                    <div class="col-4 text-end">
+
+                                        <p class="card-text" style="font-size: 20px; font-weight: bold;">
+                                            {{flight.arrival_airport_to.iata_code}}
+                                        </p>
+
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-6">
+                                        <p class="card-text">
+                                            {{flight.departure_time|time:"h:i A" }}
+                                        </p>
+                                    </div>
+                                    <div class="col-6 text-end">
+                                        <p class="card-text">
+                                            {{flight.arrival_time|time:"h:i A" }}
+                                        </p>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+            <div class="col-1">
+                <div class="mb-3">
+                    <div>
+                        <label class="form-check">
+                            <input class="form-check-input" type="checkbox" name="checkboxGroup"
+                                onclick="handleCheckboxSelection(this) ; myFunction();" checked >
+                            <span class="form-check-label">Not Checking</span>
+                        </label>
+                        <label class="form-check">
+                            <input class="form-check-input" type="checkbox" name="checkboxGroup"
+                                onclick="handleCheckboxSelection(this)" id="checkinin">
+                            <span class="form-check-label">Check-in</span>
+                        </label>
+                        <label class="form-check">
+                            <input class="form-check-input" type="checkbox" name="checkboxGroup"
+                                onclick="handleCheckboxSelection(this)">
+                            <span class="form-check-label">All</span>
+                        </label>
+                        <label class="form-check">
+                            <input class="form-check-input" type="checkbox" name="checkboxGroup"
+                                onclick="handleCheckboxSelection(this)">
+                            <span class="form-check-label">Standby</span>
+                        </label>
+                        <label class="form-check">
+                            <input class="form-check-input" type="checkbox" name="checkboxGroup"
+                                onclick="handleCheckboxSelection(this)">
+                            <span class="form-check-label">Waitlist</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-2">
+                <div class="mb-3">
+                    <label for="" class="form-label">Filter</label>
+                    <input type="text" name="" class="form-control" id="searchInput">
+
+                </div>
+            </div>
+
+
+
+
+
+        </div>
+
+
+        <div class="row ">
+            <div class="col-md-12">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="table-responsive">
+                            <table class="table card-table table-vcenter text-nowrap datatable table-striped">
+                                <thead>
+                                    <tr>
+                                        <th hidden>Document</th>
+                                        <th>Check-in</th>
+                                        <th>Sq</th>
+                                        <th>Surname</th>
+                                        <th>Name</th>
+                                        <th>Gender</th>
+                                        <th>Type</th>
+                                        <th>Class</th>
+                                        <th>Seat</th>
+                                        <th>Pax Wt (Kg)</th>
+                                        <th>Bags</th>
+                                        <th>Bag Wt (Kg)</th>
+                                        <th>Hand (Kg)</th>
+                                        <th>Final Destination</th>
+                                        <th class="w-0">Comments</th>
+                                        <th class="w-1"></th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for i in flight_pass %}
+                                    <tr>
+                                        <td hidden>{{i.documentnumber}}</td>
+                                        <td>{{i.check_in}}</td>
+                                        <td>{{i.seq_no}}</td>
+                                        <td>{{i.surname}}</td>
+                                        <td>{{i.fullname}}</td>
+                                        <td>{{i.gender}}</td>
+                                        <td>{{i.pax_type|default:"" }}</td>
+                                        <td>{{i.seat_class|default:"" }}</td>
+                                        <td>{{i.seat_no|default:"" }}</td>
+                                        <td>{{i.pax_weight|default:"" }}</td>
+                                        <td>{{i.bags|default:"" }}</td>
+                                        <td>{{i.bag_weight|default:"" }}</td>
+                                        <td>{{i.hand_bag|default:"" }}</td>
+                                        <td>{{i.destination|default:"" }}</td>
+                                        <td><a href="">
+                                                <button class="btn bg-dribbble-lt ">
+                                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                                        class="icon icon-tabler icon-tabler-mail m-0" width="24"
+                                                        height="24" viewBox="0 0 24 24" stroke-width="2"
+                                                        stroke="currentColor" fill="none" stroke-linecap="round"
+                                                        stroke-linejoin="round">
+                                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                                        <path
+                                                            d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z">
+                                                        </path>
+                                                        <path d="M3 7l9 6l9 -6"></path>
+                                                    </svg>
+                                                </button>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a href="{% url 'passenger_checkin' i.id %}"
+                                                class="btn bg-lime-lt">Check-in</a>
+                                            <a href="{% url 'passenger_edit' i.id %}" class="btn bg-primary-lt">Edit
+                                                Pax</a>
+                                            <a href="#" class="btn bg-youtube-lt">Delete</a>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+    function handleCheckboxSelection(checkbox) {
+        var checkboxes = document.getElementsByName('checkboxGroup');
+        var tableRows = document.querySelectorAll('.table tbody tr');
+
+        checkboxes.forEach(function (currentCheckbox) {
+            if (currentCheckbox !== checkbox) {
+                currentCheckbox.checked = false;
+            }
+        });
+
+        if (checkbox.id === 'checkinin') {
+            tableRows.forEach(function (row) {
+                var checkInCell = row.querySelector('td:nth-child(2)');
+
+                if (checkInCell.textContent === '1') {
+                    row.style.display = 'table-row';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        } else {
+            tableRows.forEach(function (row) {
+                row.style.display = 'table-row';
+            });
+        }
+
+        
+    }
+</script>
+
+<script>
+    function myFunction(){
+        var tableRows = document.querySelectorAll('.table tbody tr');
+    tableRows.forEach(function (row) {
+        var checkInCell = row.querySelector('td:nth-child(2)');
+        if (checkInCell.textContent === '0' || checkInCell.textContent === '' ) {
+            row.style.display = 'table-row';
+        } else {
+            row.style.display = 'none';
+        }
+    });
+    }
+</script>
+
+
+<script>
+    var tableRows = document.querySelectorAll('.table tbody tr');
+    tableRows.forEach(function (row) {
+        var checkInCell = row.querySelector('td:nth-child(2)');
+        if (checkInCell.textContent === '0' || checkInCell.textContent === '' ) {
+            row.style.display = 'table-row';
+        } else {
+            row.style.display = 'none';
+        }
+    });
+</script>
+
+
+
+<script>
+    const searchInput = document.getElementById('searchInput');
+    const tableRows = document.querySelectorAll('.datatable tbody tr');
+
+    searchInput.addEventListener('input', function () {
+        const query = this.value.toLowerCase();
+
+        tableRows.forEach(function (row) {
+            const a2 = row.querySelector('td:nth-child(1)').textContent.toLowerCase();
+            const a1 = row.querySelector('td:nth-child(2)').textContent.toLowerCase();
+            const a = row.querySelector('td:nth-child(3)').textContent.toLowerCase();
+            const b = row.querySelector('td:nth-child(4)').textContent.toLowerCase();
+            const c = row.querySelector('td:nth-child(5)').textContent.toLowerCase();
+            const d = row.querySelector('td:nth-child(6)').textContent.toLowerCase();
+            const e = row.querySelector('td:nth-child(7)').textContent.toLowerCase();
+            const f = row.querySelector('td:nth-child(8)').textContent.toLowerCase();
+
+
+            if (a2.includes(query) || a1.includes(query) || a.includes(query) || b.includes(query) || c.includes(query) || d.includes(query) || e.includes(query) || f.includes(query)) {
+                row.style.display = '';
+            } else {
+                row.style.display = 'none';
+            }
+        });
+    });
+</script>
+
+
+
+
+
+
+{% endblock %}

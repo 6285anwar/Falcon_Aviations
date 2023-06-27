@@ -1,0 +1,399 @@
+{% extends 'admin_navbar.html' %}
+{% block content %}
+{% load static %}
+
+<div class="page-wrapper">
+  <div class="page-body">
+    <div class="container-xl">
+      <div class="row row-deck row-cards">
+        <div class="col-lg-9 col-lg-3">
+          <div class="col-12">
+            <div class="row row-cards">
+              <div class="col-sm-6 col-lg-3">
+                <div class="card card-sm bg-cyan-lt">
+                  <div class="card-body">
+                    <div class="row align-items-center">
+                      <div class="col-auto">
+                        <span class="bg-cyan text-white avatar">
+                          <!-- Download SVG icon from http://tabler-icons.io/i/currency-dollar -->
+                          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-plane" width="24"
+                            height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                            <path d="M16 10h4a2 2 0 0 1 0 4h-4l-4 7h-3l2 -7h-4l-2 2h-3l2 -4l-2 -4h3l2 2h4l-2 -7h3z">
+                            </path>
+                          </svg>
+                        </span>
+                      </div>
+                      <div class="col">
+                        <div class="font-weight-medium text-dark">
+                          Total Flight
+                        </div>
+                        <div class="text-muted" id="aircraft_count">
+                          {{aircraft_count}}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-sm-6 col-lg-3">
+                <div class="card card-sm bg-teal-lt">
+                  <div class="card-body">
+                    <div class="row align-items-center">
+                      <div class="col-auto">
+                        <span class="bg-teal text-white avatar">
+                          <!-- Download SVG icon from http://tabler-icons.io/i/currency-dollar -->
+                          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-plane-inflight"
+                            width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                            fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                            <path d="M15 11.085h5a2 2 0 1 1 0 4h-15l-3 -6h3l2 2h3l-2 -7h3l4 7z"></path>
+                            <path d="M3 21h18"></path>
+                          </svg>
+                        </span>
+                      </div>
+                      <div class="col">
+                        <div class="font-weight-medium text-dark">
+                          Scheduled Flights
+                        </div>
+
+
+                        <div class="text-muted" id="scheduled-flights-count">
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-sm-6 col-lg-3">
+
+                <div class="card card-sm bg-teal-lt">
+                  <div class="card-body">
+                    <div class="row align-items-center">
+                      <div class="col-auto">
+                        <span class="bg-teal text-white avatar">
+                          <!-- Download SVG icon from http://tabler-icons.io/i/currency-dollar -->
+                          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-plane-departure"
+                            width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                            fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                            <path
+                              d="M14.639 10.258l4.83 -1.294a2 2 0 1 1 1.035 3.863l-14.489 3.883l-4.45 -5.02l2.897 -.776l2.45 1.414l2.897 -.776l-3.743 -6.244l2.898 -.777l5.675 5.727z">
+                            </path>
+                            <path d="M3 21h18"></path>
+                          </svg>
+                        </span>
+                      </div>
+                      <div class="col">
+                        <div class="font-weight-medium text-dark">
+                          Departure Flights
+                        </div>
+                        <div class="text-muted" id="departure-flights-count">
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-sm-6 col-lg-3">
+                <div class="card card-sm bg-cyan-lt">
+                  <div class="card-body">
+                    <div class="row align-items-center">
+                      <div class="col-auto">
+                        <span class="bg-cyan text-white avatar">
+                          <!-- Download SVG icon from http://tabler-icons.io/i/currency-dollar -->
+                          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-plane-arrival"
+                            width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                            fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                            <path
+                              d="M15.157 11.81l4.83 1.295a2 2 0 1 1 -1.036 3.863l-14.489 -3.882l-1.345 -6.572l2.898 .776l1.414 2.45l2.898 .776l-.12 -7.279l2.898 .777l2.052 7.797z">
+                            </path>
+                            <path d="M3 21h18"></path>
+                          </svg>
+                        </span>
+                      </div>
+                      <div class="col">
+                        <div class="font-weight-medium text-dark">
+                          Arrival Flights
+                        </div>
+                        <div class="text-muted">
+                          12
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-sm-6 col-lg-3">
+                <div class="card card-sm bg-lime-lt">
+                  <div class="card-body">
+                    <div class="row align-items-center">
+                      <div class="col-auto">
+                        <span class="bg-lime text-white avatar">
+                          <!-- Download SVG icon from http://tabler-icons.io/i/currency-dollar -->
+                          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-users" width="24"
+                            height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                            <path d="M9 7m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"></path>
+                            <path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                            <path d="M21 21v-2a4 4 0 0 0 -3 -3.85"></path>
+                          </svg>
+                        </span>
+                      </div>
+                      <div class="col">
+                        <div class="font-weight-medium text-dark">
+                          Total Passengers
+                        </div>
+                        <div class="text-muted">
+                          12
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-sm-6 col-lg-3">
+                <div class="card card-sm bg-green-lt">
+                  <div class="card-body">
+                    <div class="row align-items-center">
+                      <div class="col-auto">
+                        <span class="bg-green text-white avatar">
+                          <!-- Download SVG icon from http://tabler-icons.io/i/currency-dollar -->
+                          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user-check"
+                            width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                            fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                            <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"></path>
+                            <path d="M6 21v-2a4 4 0 0 1 4 -4h4"></path>
+                            <path d="M15 19l2 2l4 -4"></path>
+                          </svg>
+                        </span>
+                      </div>
+                      <div class="col">
+                        <div class="font-weight-medium text-dark">
+                          Check-in
+                        </div>
+                        <div class="text-muted">
+                          12
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-sm-6 col-lg-3">
+                <div class="card card-sm bg-vimeo-lt">
+                  <div class="card-body">
+                    <div class="row align-items-center">
+                      <div class="col-auto">
+                        <span class="bg-vimeo text-white avatar">
+                          <!-- Download SVG icon from http://tabler-icons.io/i/currency-dollar -->
+                          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user-share"
+                            width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                            fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                            <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"></path>
+                            <path d="M6 21v-2a4 4 0 0 1 4 -4h3"></path>
+                            <path d="M16 22l5 -5"></path>
+                            <path d="M21 21.5v-4.5h-4.5"></path>
+                          </svg>
+                          </svg>
+                        </span>
+                      </div>
+                      <div class="col">
+                        <div class="font-weight-medium text-dark">
+                          Check-out
+                        </div>
+                        <div class="text-muted">
+                          12
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-sm-6 col-lg-3">
+                <div class="card card-sm bg-youtube-lt">
+                  <div class="card-body">
+                    <div class="row align-items-center">
+                      <div class="col-auto">
+                        <span class="bg-youtube text-white avatar">
+                          <!-- Download SVG icon from http://tabler-icons.io/i/currency-dollar -->
+                          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user-x" width="24"
+                            height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                            <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"></path>
+                            <path d="M6 21v-2a4 4 0 0 1 4 -4h3.5"></path>
+                            <path d="M22 22l-5 -5"></path>
+                            <path d="M17 22l5 -5"></path>
+                          </svg>
+                        </span>
+                      </div>
+                      <div class="col">
+                        <div class="font-weight-medium text-dark">
+                          Cancelled
+                        </div>
+                        <div class="text-muted">
+                          12
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="card bg-cyan-lt">
+            <div class="card-body">
+              <div class="ratio ratio-21x9">
+                <div>
+                  <div id="map-world" class="w-100 h-100"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="card">
+            <h4>demo card</h4>
+          </div>
+        </div>
+
+
+
+        <div class="col-md-6">
+          <div class="card" style="background-color: rgba(255, 0, 0, 0);">
+            <div class="card-header">
+              <h3 class="card-title">Flights</h3>
+            </div>
+            <div class="card-body" style="background-color: rgba(255, 0, 0, 0); overflow: scroll; height: 500px;">
+
+              {% for i in flight %}
+              <div class="card mb-3">
+                <div class="col-12">
+                  <div class="card bg-primary text-primary-fg">
+                    <div class="card-stamp">
+                      <div class="card-stamp-icon bg-white text-primary">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-plane-tilt"
+                          width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                          stroke-linecap="round" stroke-linejoin="round">
+                          <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                          <path
+                            d="M14.5 6.5l3 -2.9a2.05 2.05 0 0 1 2.9 2.9l-2.9 3l2.5 7.5l-2.5 2.55l-3.5 -6.55l-3 3v3l-2 2l-1.5 -4.5l-4.5 -1.5l2 -2h3l3 -3l-6.5 -3.5l2.5 -2.5l7.5 2.5z">
+                          </path>
+                        </svg>
+                      </div>
+                    </div>
+                    <div class="card-body">
+                      <div class="row">
+                        <div class="col-6">
+                          <h4 class="card-title">
+                            {{i.airline_name}} |
+                            {{i.flight_number }}</h4>
+                        </div>
+                        <div class="col-6 text-end">
+                          <h5 class="card-title">
+                            {{i.departure_date }}</h5>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-6">
+                          <h6 class="card-text mb-0">
+                            {{i.departure_airport_from.airport_name}}
+                          </h6>
+                        </div>
+                        <div class="col-6 text-end">
+                          <h6 class="card-text mb-0 overflow-hidden">
+                            {{i.arrival_airport_to.airport_name}}
+                          </h6>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-4">
+                          <p class="card-text" style="font-size: 20px; font-weight: bold;">
+                            {{i.departure_airport_from.iata_code}}
+                          </p>
+                        </div>
+                        <div class="col-4 text-center mt-1">--------
+                          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-plane" width="24"
+                            height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none">
+                            </path>
+                            <path d="M16 10h4a2 2 0 0 1 0 4h-4l-4 7h-3l2 -7h-4l-2 2h-3l2 -4l-2 -4h3l2 2h4l-2 -7h3z">
+                            </path>
+                          </svg> --------
+                        </div>
+                        <div class="col-4 text-end">
+                          <p class="card-text" style="font-size: 20px; font-weight: bold;">
+                            {{i.arrival_airport_to.iata_code}}
+                          </p>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-6">
+                          <p class="card-text">
+                            {{i.departure_time|time:"h:i A" }}
+                          </p>
+                        </div>
+                        <div class="col-6 text-end">
+                          <p class="card-text">
+                            {{i.arrival_time|time:"h:i A" }}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  function realtime() {
+    $.ajax({
+      type: "GET",
+      url: "{% url 'real_time_counts' %}",
+      success: function (data) {
+        var departureFlightsCount = data.departure_flights_count;
+        var scheduledFlightsCount = data.scheduled_flights_count;
+        $("#scheduled-flights-count").text(scheduledFlightsCount);
+        $("#departure-flights-count").text(departureFlightsCount);
+      }
+    });
+  }
+  realtime();
+  setInterval(realtime, 1000);
+</script>
+
+
+
+{% endblock %}
